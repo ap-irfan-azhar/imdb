@@ -1,0 +1,24 @@
+<h1>Edit Profile</h1>
+
+<%= form_for @user, url: profile_update_path, html: { method: :patch, style: 'max-width: 600px; margin: 0 auto;' } do |f| %>
+  <div style="margin-bottom: 16px;">
+    <%= f.label :email, style: 'display: block; margin-bottom: 4px;' %>
+    <%= f.email_field :email, style: 'width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;' %>
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <%= f.label :name, style: 'display: block; margin-bottom: 4px;' %>
+    <%= f.text_field :name, style: 'width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;' %>
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <%= f.label :bio, style: 'display: block; margin-bottom: 4px;' %>
+    <%= f.text_area :bio, style: 'width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;' %>
+  </div>
+
+
+  <div>
+    <%= f.submit 'Update Profile', style: 'padding: 10px 20px; background-color: #3498db; color: #fff; border: none; border-radius: 4px; cursor: pointer;' %>
+    <%= link_to 'Back', profile_path, style: 'padding: 10px 20px; background-color: #e74c3c; color: #fff; text-decoration: none; border-radius: 4px; margin-left: 10px;' %>
+  </div>
+<% end %>

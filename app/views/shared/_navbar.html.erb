@@ -1,0 +1,14 @@
+<nav style="background-color: #3498db; padding: 10px 20px; color: #fff;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+    <a href="<%= root_path %>" style="color: #fff; text-decoration: none; font-size: 20px; font-weight: bold;">Home</a>
+    <div>
+      <% if user_signed_in? %>
+        <a href="<%= profile_path %>" style="color: #fff; text-decoration: none; margin-right: 15px;">Profile</a>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete, form: { style: 'display: inline;' }, class: 'btn btn-danger' %>
+    <% else %>
+        <a href="<%= new_user_session_path %>" style="color: #fff; text-decoration: none; margin-right: 15px;">Login</a>
+        <a href="<%= new_user_registration_path %>" style="color: #fff; text-decoration: none;">Sign Up</a>
+      <% end %>
+    </div>
+  </div>
+</nav>

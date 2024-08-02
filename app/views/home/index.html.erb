@@ -1,4 +1,4 @@
-<h1 style="font-size: 28px; color: #2c3e50; text-align: center; margin-top: 20px;">Welcome, <%= @user.email %></h1>
+<h1 style="font-size: 28px; color: #2c3e50; text-align: center; margin-top: 20px;">Welcome, <%= @user.name || @user.email %></h1>
 <h2 style="font-size: 24px; color: #34495e; text-align: center; margin-bottom: 20px;">Top Rated Movies</h2>
 <ul style="list-style-type: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; justify-content: center;">
   <% @movies.each do |movie| %>

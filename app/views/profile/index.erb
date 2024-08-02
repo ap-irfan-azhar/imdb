@@ -1,0 +1,8 @@
+<h1>Profile</h1>
+
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Name:</strong> <%= @user.name %></p>
+  <p><strong>Bio:</strong> <%= @user.bio %></p>
+  <%= link_to 'Edit Profile', profile_edit_path, class: 'button' %>
+</div>
