@@ -1,0 +1,7 @@
+:concurrency: 5
+:queues:
+  - default
+:schedule:
+  fetch_imdb_data_job:
+    cron: "0 * * * *"
+    class: "FetchImdbDataJob"

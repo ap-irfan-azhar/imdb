@@ -11,6 +11,21 @@ class ImdbService
   end
 
   def get_popular_movies page, per_page
+    body = fetch_movies
+    offset = (page - 1) * per_page
+    body['data']['list'] = body['data']['list'][offset, per_page]
+    body['data']['list'].map do |movie|
+      movie = movie['title']
+      {
+        title: movie['titleText']['text'],
+        year: movie['releaseYear']["year"],
+        rating: movie['ratingsSummary']['aggregateRating'],
+        poster: movie['primaryImage']['imageUrl']
+      }
+    end
+  end
+
+  def fetch_movies
     response = Rails.cache.fetch('imdb_movies', expires_in: 1.hour) do
       @conn.post('/api/v1/getPopularMovies') do |req|
         req.body = {
@@ -23,17 +38,6 @@ class ImdbService
         }.to_json
       end
     end
-    body = JSON.parse(response.body)
-    offset = (page - 1) * per_page
-    body['data']['list'] = body['data']['list'][offset, per_page]
-    body['data']['list'].map do |movie|
-      movie = movie['title']
-      {
-        title: movie['titleText']['text'],
-        year: movie['releaseYear']["year"],
-        rating: movie['ratingsSummary']['aggregateRating'],
-        poster: movie['primaryImage']['imageUrl']
-      }
-    end
+    JSON.parse(response.body)
   end
 end
